@@ -1,0 +1,226 @@
+:root {
+  --bg-a: #f3f7ec;
+  --bg-b: #e6efe8;
+  --panel-bg: rgba(255, 255, 255, 0.86);
+  --panel-border: #c2d3c4;
+  --text-main: #1a2a22;
+  --text-muted: #4b6355;
+  --accent-out: #bf4f17;
+  --accent-in: #2f6f73;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  color: var(--text-main);
+  background: radial-gradient(circle at 20% 10%, var(--bg-a), var(--bg-b) 60%);
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.panel {
+  border-right: 1px solid var(--panel-border);
+  background: var(--panel-bg);
+  backdrop-filter: blur(4px);
+  padding: 1.2rem;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+main {
+  min-height: 0;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.35rem;
+  letter-spacing: 0.01em;
+}
+
+.subtitle {
+  margin-top: 0.5rem;
+  color: var(--text-muted);
+}
+
+.card {
+  margin-top: 0.9rem;
+  padding: 0.85rem;
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  background: #fbfdfb;
+}
+
+.label {
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.value {
+  margin: 0.25rem 0 0.7rem;
+  font-weight: 600;
+}
+
+button {
+  background: #f2f8f2;
+  border: 1px solid #93ab95;
+  color: var(--text-main);
+  border-radius: 8px;
+  padding: 0.5rem 0.65rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e9f3e9;
+}
+
+label {
+  display: block;
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+}
+
+select {
+  width: 100%;
+  padding: 0.35rem;
+  border: 1px solid #9fb6a3;
+  border-radius: 8px;
+  background: #fcfffc;
+  color: var(--text-main);
+}
+
+select[multiple] {
+  height: auto;
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
+.checkbox-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.checkbox-row label {
+  margin: 0;
+}
+
+.row-buttons {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.45rem;
+}
+
+.row-buttons button {
+  flex: 1;
+}
+
+.reset-all-wrap {
+  margin-top: 0.7rem;
+}
+
+.reset-all-wrap button {
+  width: 100%;
+}
+
+.hint {
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.stats div {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.25rem 0;
+}
+
+.stats span {
+  color: var(--text-muted);
+}
+
+.legend {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.legend div {
+  margin: 0.35rem 0;
+}
+
+.swatch {
+  width: 0.85rem;
+  height: 0.85rem;
+  display: inline-block;
+  border-radius: 3px;
+  margin-right: 0.45rem;
+  vertical-align: text-top;
+}
+
+.swatch.out {
+  background: var(--accent-out);
+}
+
+.swatch.in {
+  background: var(--accent-in);
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.leaflet-tooltip.flow-tooltip {
+  border-radius: 8px;
+  border: 1px solid #b9c9bb;
+  color: #133123;
+}
+
+.leaflet-container .leaflet-interactive:focus {
+  outline: none;
+}
+
+.flow-arrow-head {
+  position: relative;
+  top: 50%;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: calc(var(--arrow-size) * 0.28) solid transparent;
+  border-bottom: calc(var(--arrow-size) * 0.28) solid transparent;
+  border-left: var(--arrow-size) solid var(--arrow-color);
+  transform-origin: 0 50%;
+  pointer-events: none;
+  filter: drop-shadow(0 0 0.5px rgba(0, 0, 0, 0.22));
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+  }
+
+  .panel {
+    border-right: none;
+    border-bottom: 1px solid var(--panel-border);
+  }
+
+  #map {
+    height: 100%;
+  }
+}

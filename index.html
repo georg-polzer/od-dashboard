@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OD Flow Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="panel">
+        <h1>OD Flow Dashboard</h1>
+        <p class="subtitle">Select a zone to visualize inbound and outbound trips.</p>
+
+        <section class="card">
+          <div class="label">Selected zone</div>
+          <div id="selected-zone" class="value">None</div>
+          <button id="clear-selection" type="button">Clear selection</button>
+        </section>
+
+        <section class="card">
+          <label for="min-count">Minimum trips: <span id="min-count-value">1</span></label>
+          <input id="min-count" type="range" min="1" max="500" value="1" step="1" />
+
+          <label for="max-arrows">Max arrows per direction: <span id="max-arrows-value">80</span></label>
+          <input id="max-arrows" type="range" min="10" max="200" value="80" step="10" />
+
+          <label for="min-distance">Min distance (km): <span id="min-distance-value">0</span></label>
+          <input id="min-distance" type="range" min="0" max="300" value="0" step="1" />
+
+          <label for="max-distance">Max distance (km): <span id="max-distance-value">300</span></label>
+          <input id="max-distance" type="range" min="0" max="300" value="300" step="1" />
+        </section>
+
+        <section class="card">
+          <div class="label">Direction</div>
+          <div class="checkbox-row">
+            <label><input id="show-outbound" type="checkbox" checked /> Outbound</label>
+            <label><input id="show-inbound" type="checkbox" checked /> Inbound</label>
+          </div>
+
+          <label for="mode-filter">Mode of transport</label>
+          <select id="mode-filter">
+            <option value="all">All</option>
+            <option value="NotClassified">Non Classified</option>
+            <option value="Train">Rail</option>
+            <option value="Road">Road</option>
+            <option value="Plane">Air</option>
+          </select>
+
+          <label for="hour-filter">Hours (multi-select)</label>
+          <select id="hour-filter" multiple size="8"></select>
+          <div id="hour-summary" class="hint">24 / 24 hours selected</div>
+          <div class="row-buttons">
+            <button id="hours-all" type="button">Select all hours</button>
+            <button id="hours-none" type="button">Clear hours</button>
+          </div>
+        </section>
+
+        <div class="reset-all-wrap">
+          <button id="reset-filters" type="button">Reset all filters</button>
+        </div>
+
+        <section class="card stats">
+          <div><span>Outbound trips</span><strong id="outbound-total">0</strong></div>
+          <div><span>Inbound trips</span><strong id="inbound-total">0</strong></div>
+          <div><span>Connected zones</span><strong id="connected-zones">0</strong></div>
+        </section>
+
+        <section class="legend">
+          <div><span class="swatch out"></span> Outbound</div>
+          <div><span class="swatch in"></span> Inbound</div>
+          <p>Arrow width scales with trip volume.</p>
+        </section>
+      </aside>
+
+      <main>
+        <div id="map" aria-label="OD flow map"></div>
+      </main>
+    </div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
